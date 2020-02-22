@@ -81,9 +81,7 @@ h1 {
 var playerPlaysFirst = true;
 var emptySquares = 9;
 var grid = ["", "", "", "", "", "", "", "", ""];
-// for (var i=0; i<9; i++){
-// 	document.getElementById(i).onclick = function() {myFunction(i)};
-// }
+
 
 
 document.getElementById("0").onclick =function () {placeX("0")};
@@ -95,12 +93,7 @@ document.getElementById("5").onclick =function () {placeX("5")};
 document.getElementById("6").onclick =function () {placeX("6")};
 document.getElementById("7").onclick =function () {placeX("7")};
 document.getElementById("8").onclick =function () {placeX("8")};
-/*var photos = document.getElementByCLassName("photo")//.onclick = function() {myFunction()};
-for (var i = 0; i <photos.length; i++){
-	var photo = photos[i];
-	photo.onclick = function() {myFunction( photo)};
-}
-*/
+
 function winCheck(XorO){
   if (grid[0] == XorO){
     if (grid[3] == XorO) {
@@ -177,9 +170,7 @@ function resetGame(){
   grid = ["", "", "", "", "", "", "", "", ""];
   emptySquares = 9;
 }
-// function setX(txt){
-//   document.getElementById(txt).src = "img/X.jpg";
-// }
+
 function placeO(){
   if (document.getElementById("4").getAttribute("src") == "img/blank.jpg"){
     document.getElementById("4").src = "img/O.jpg";
@@ -191,10 +182,18 @@ function placeO(){
     if (grid[i] == ""){
       grid[i] = "O";
       if (winCheck("O")) {
+        document.getElementById(i.toString()).src = "img/O.jpg";
         alert("Player has lost... Game will reset!");
         resetGame();
         return;       
       }
+      else{
+        grid[i] = "";
+      }
+    }
+  }
+  for (var i = 0; i < 9; i++){
+    if (grid[i] == ""){
       grid[i] = "X";
       if (winCheck("X")){
         grid[i] = "O" ;
@@ -203,10 +202,13 @@ function placeO(){
         emptySquares--;
         return;
       }
+      else{
       grid[i] = "";
+      }
     }
-
   }
+
+  
   if (emptySquares == 6){
     if (document.getElementById("0").getAttribute("src") == "img/X.jpg" && document.getElementById("8").getAttribute("src") == "img/X.jpg"){
       document.getElementById("1").src = "img/O.jpg";
@@ -252,50 +254,7 @@ function placeO(){
   }
 }
 
-// function recursive(int,XorO){
-//   grid[int] = XorO;
-//   if (XorO == "O") {
-//     if (WinCheck("O"))
-//      {
-      
-//     }
-//     recursive
-    
-//   }
-// }
-// function placeO{
-//   for (var i = 0; i < 9; index++) {
-//     if (grid[i] == ""){
-//       recursive
-//       grid[i] = "O";      
-//     }
-    
-//   }
-// }
-// function placeO() {
-//   nextMove = 4;
-//   temp = 4;
-//   xCanWin = false;
-//   oCanWin = false;
-//   var tempGrid = grid.slice();
-//   for (var j=0; j < emptySquares ; j++){
-//     for (var i=0; i < 9; i++){
-//       if (tempGrid[i] == "") {
-//         if (j % 2 == 0) {
-//           tempGrid[i] = "O";
-//           nextMove = i;
-//         }
-//         else{
-//           tempGrid[i] = "X";
-//         }
-//         if (oCanWin || xCanWin ){
-//           break;
-//         }
-//       }
-//     }
-//   }
-  
-// }
+
 function placeX(txt) {
 
   if (document.getElementById(txt).getAttribute("src") == "img/blank.jpg") {
@@ -316,11 +275,7 @@ function placeX(txt) {
       placeO();
     }, 1000);
   }
-  // window.alert(5+6);
-  // if (emptySquares < 5){
-   
 
-  // }
 }
 
 
