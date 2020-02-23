@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-<style>
+  <head>
+    <style>
+      
+      h1 {
+        text-align: center;
+        font-family: Impact, sans-serif ;
+        font-size: 35px;
+      }
+      h1:hover{
+        color: rebeccapurple;
+      }
+      div img:hover{
+      opacity:0.5; 
+  }
+  
+/* 
+      img:hover {
+        color: red;
+      } */
 
-h1 {
-  text-align: center;
-  font-family: Impact, sans-serif ;
-  font-size: 35px;
-  /* color: black; */
-}
-/* .demo {
-  margin-left: auto;
-  margin-right: auto;
-
-} */
-.grid-container {
+  .grid-container {
   display: grid;
   width:770px;
   height:770px;
@@ -26,18 +32,19 @@ h1 {
   margin-left: auto;
   margin-right: auto;
 }
-
-/* .grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  } */
-
+grid-container:hover{
+  color:aqua;
+}
+div:hover{
+  color: yellow;
+}
 
 
 .photo>img {
   object-fit: cover;
   width: 100%;
   height: 100%;
+  
 }
 
 </style>
@@ -55,7 +62,7 @@ h1 {
 
 <p></p>
 
-<div class="grid-container">
+<div class="grid-container" id = "grid-container">
   <div  class="photo">
 	<img id="0" src="img/blank.jpg"> </div>
   <div  class="photo"> 
@@ -158,15 +165,27 @@ function checkSquaresLeft(){
   return false;
 }
 function resetGame(){
-  document.getElementById("0").src = "img/blank.jpg";
-  document.getElementById("1").src = "img/blank.jpg";
-  document.getElementById("2").src = "img/blank.jpg";
-  document.getElementById("3").src = "img/blank.jpg";
-  document.getElementById("4").src = "img/blank.jpg";
-  document.getElementById("5").src = "img/blank.jpg";
-  document.getElementById("6").src = "img/blank.jpg";
-  document.getElementById("7").src = "img/blank.jpg";
-  document.getElementById("8").src = "img/blank.jpg";
+  //TODO change opacity to 1 again
+  // var photos = document.getElementsByClassName("photo");
+  // var photos = document.getElementById("grid-container").querySelectorAll("photo");
+  var photos = document.querySelectorAll("#grid-container .photo");
+  photos[0].src = "img/blank.jpg";
+  // var photos = document.getElementsByClassName("grid-container");
+  // for (var i = 0; i < photos.length; i++) {
+  //   var temp = photos[i];
+  //   temp.src = "img/blank.jpg";
+    // photos[i].src = "img/blank.jpg";
+    
+  // }
+  // document.getElementById("0").src = "img/blank.jpg";
+  // document.getElementById("1").src = "img/blank.jpg";
+  // document.getElementById("2").src = "img/blank.jpg";
+  // document.getElementById("3").src = "img/blank.jpg";
+  // document.getElementById("4").src = "img/blank.jpg";
+  // document.getElementById("5").src = "img/blank.jpg";
+  // document.getElementById("6").src = "img/blank.jpg";
+  // document.getElementById("7").src = "img/blank.jpg";
+  // document.getElementById("8").src = "img/blank.jpg";
   grid = ["", "", "", "", "", "", "", "", ""];
   emptySquares = 9;
 }
@@ -174,6 +193,7 @@ function resetGame(){
 function placeO(){
   if (document.getElementById("4").getAttribute("src") == "img/blank.jpg"){
     document.getElementById("4").src = "img/O.jpg";
+    document.getElementById("4").style.opacity = 1;
     grid[4] = "O";
     emptySquares--;
     return;
@@ -183,6 +203,7 @@ function placeO(){
       grid[i] = "O";
       if (winCheck("O")) {
         document.getElementById(i.toString()).src = "img/O.jpg";
+        document.getElementById(i.toString()).style.opacity = 1;
         alert("Player has lost... Game will reset!");
         resetGame();
         return;       
@@ -199,6 +220,7 @@ function placeO(){
         grid[i] = "O" ;
         var temp = i.toString();
         document.getElementById(i.toString()).src = "img/O.jpg";
+        document.getElementById(i.toString()).style.opacity = 1;
         emptySquares--;
         return;
       }
@@ -212,12 +234,14 @@ function placeO(){
   if (emptySquares == 6){
     if (document.getElementById("0").getAttribute("src") == "img/X.jpg" && document.getElementById("8").getAttribute("src") == "img/X.jpg"){
       document.getElementById("1").src = "img/O.jpg";
+      document.getElementById("1").style.opacity = 1;
       grid[1] = "O";
       emptySquares--;
       return;
     }
     if (document.getElementById("2").getAttribute("src") == "img/X.jpg" && document.getElementById("6").getAttribute("src") == "img/X.jpg"){
       document.getElementById("3").src = "img/O.jpg";
+      document.getElementById("3").style.opacity = 1;
       grid[3] = "O";
       emptySquares--;
       return;
@@ -225,6 +249,7 @@ function placeO(){
   }
   if (document.getElementById("0").getAttribute("src") == "img/blank.jpg"){
     document.getElementById("0").src = "img/O.jpg";
+    document.getElementById("0").style.opacity = 1;
     grid[0] = "O";
     emptySquares--;
     checkSquaresLeft()
@@ -232,6 +257,7 @@ function placeO(){
   }
   if (document.getElementById("8").getAttribute("src") == "img/blank.jpg"){
     document.getElementById("8").src = "img/O.jpg";
+    document.getElementById("8").style.opacity = 1;
     grid[8] = "O";
     emptySquares--;
     checkSquaresLeft()
@@ -240,6 +266,7 @@ function placeO(){
 
   if (document.getElementById("2").getAttribute("src") == "img/blank.jpg"){
     document.getElementById("2").src = "img/O.jpg";
+    document.getElementById("2").style.opacity = 1;
     grid[2] = "O";
     emptySquares--;
     checkSquaresLeft()
@@ -247,6 +274,7 @@ function placeO(){
   }
   if (document.getElementById("6").getAttribute("src") == "img/blank.jpg"){
     document.getElementById("6").src = "img/O.jpg";
+    document.getElementById("6").style.opacity = 1;
     grid[6] = "O";
     emptySquares--;
     checkSquaresLeft()
@@ -259,6 +287,7 @@ function placeX(txt) {
 
   if (document.getElementById(txt).getAttribute("src") == "img/blank.jpg") {
     document.getElementById(txt).src = "img/X.jpg";
+    document.getElementById(txt).style.opacity = 1;
     var temp = parseInt(txt);
     grid[temp] = "X"; 
     emptySquares--;
